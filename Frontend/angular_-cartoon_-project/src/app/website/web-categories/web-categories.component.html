@@ -1,0 +1,14 @@
+<main class="main">
+  <header class="header">
+    <h1 class="logo">Samurai</h1>
+    <h2 class="subheading">use the keys A, D and K</h2>
+  </header>
+
+  <div
+    #samuraiRef
+    class="samurai"
+    [ngClass]="currentAction"
+    [style.transform]="'scaleX(' + scaleX + ') scaleY(' + scaleY + ')'"
+    [style.left.%]="posX"
+  ></div>
+</main>

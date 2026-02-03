@@ -1,0 +1,107 @@
+// @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+	font-optical-sizing: auto;
+	font-family: "Press Start 2P", system-ui;
+	font-weight: 400;
+	font-style: normal;
+}
+
+html,
+body {
+	width: 100vw;
+	min-height: 100vh;
+	min-height: 100dvh;
+}
+
+body {
+	position: relative;
+	margin: 0;
+	background-color: #7c7c7c;
+	overflow-x: hidden;
+	display: grid;
+	grid-template-rows: repeat(2, auto);
+	align-items: center;
+	justify-items: center;
+}
+
+h1 {
+	margin: 0;
+	padding: 0;
+
+	&.logo {
+		color: #edab50;
+		font-size: clamp(4rem, 10vw, 8rem);
+		text-align: center;
+		text-transform: uppercase;
+		text-shadow: 0 5px 0 #dc7237, 0 15px 0 #8c241d;
+	}
+}
+
+.subheading {
+	margin-top: 2rem;
+	text-align: center;
+}
+
+.samurai {
+	position: absolute;
+	top: 50%;
+	left: 45%;
+	width: 96px;
+	height: 96px;
+	background-repeat: no-repeat;
+	image-rendering: pixelated;
+	transform: scale(4);
+	overflow: hidden;
+
+	&.idle {
+		/*usando !important para corrigir um bug do javascript, que não
+		consegue executar o keyup após um keydown muito rápido*/
+		background-image: url("https://assets.codepen.io/97137/s__IDLE.png") !important;
+		animation: idle 1s steps(10, end) infinite !important;
+	}
+
+	&.run {
+		background-image: url("https://assets.codepen.io/97137/s_RUN.png");
+		animation: run 1s steps(16) infinite;
+	}
+
+	&.attack {
+		background-image: url("https://assets.codepen.io/97137/s__ATTACK+1.png");
+		animation: attack 0.35s steps(7, end) infinite;
+	}
+}
+
+@keyframes idle {
+	0% {
+		background-position-x: 0;
+	}
+	100% {
+		background-position-x: -960px;
+	}
+}
+
+@keyframes run {
+	0% {
+		background-position-x: 0;
+	}
+	100% {
+		background-position-x: -1536px;
+	}
+}
+
+@keyframes attack {
+	0% {
+		background-position-x: 0;
+	}
+	100% {
+		background-position-x: -672px;
+	}
+}

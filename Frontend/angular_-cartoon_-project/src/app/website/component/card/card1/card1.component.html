@@ -1,0 +1,48 @@
+<div class="slider-container" [style.background]="currentFlavor.color">
+  <div class="content">
+    <div
+      #overlay
+      class="color-overlay"
+      [style.background]="currentFlavor.color"
+    ></div>
+
+    <div class="product-name">
+      <span #firstWord class="word-part first-word">
+        {{ currentFlavor.name[0] }}
+      </span>
+      <span #secondWord class="word-part second-word">
+        {{ currentFlavor.name[1] }}
+      </span>
+    </div>
+
+    <img
+      #imageElement
+      class="milkshake-image"
+      [src]="currentFlavor.image"
+      alt="Milkshake"
+    />
+
+    <div class="nutrition-panel">
+      <div
+        class="nutrition-item"
+        *ngFor="let value of currentFlavor.nutrition; let i = index"
+      >
+        <div #nutritionValue class="nutrition-value">{{ value }}</div>
+        <div class="nutrition-label">
+          {{
+            ['Plant Protein', 'Of Fiber', 'Vitamins', 'Omega-3', 'CFU Probiotics'][i]
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div
+      class="control-dot"
+      *ngFor="let flavor of flavors; let i = index"
+      [class.active]="i === currentIndex"
+      (click)="changeSlide(i)"
+    ></div>
+  </div>
+</div>

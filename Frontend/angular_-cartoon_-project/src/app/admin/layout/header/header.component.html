@@ -1,0 +1,47 @@
+<!-- <p>
+  header works!
+</p> -->
+
+
+
+<ng-container>
+  <a nz-dropdown [nzDropdownMenu]="menu"  class="menu-title"
+    routerLink="/product">
+    Product
+    <span nz-icon nzType="caret-down" nzTheme="outline"></span>
+  </a>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu nzSelectable>
+      <li nz-menu-item >1111</li>
+    </ul>
+  </nz-dropdown-menu>
+
+    <a nz-dropdown [nzDropdownMenu]="menu"  class="menu-title"
+    routerLink="/Categories" (click)="ToCategories(2)">
+    Categories
+    <span nz-icon nzType="caret-down" nzTheme="outline"></span>
+  </a>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu nzSelectable>
+      <li nz-menu-item >2222</li>
+    </ul>
+  </nz-dropdown-menu>
+
+  <a nz-dropdown class="menu-title"
+    routerLink="/cartoon">
+    Cartoon
+    <!-- <span nz-icon nzType="caret-down" nzTheme="outline"></span> -->
+  </a>
+
+
+</ng-container>
+
+<nz-avatar nz-dropdown [nzDropdownMenu]="theme" [nzSize]="45" class="header-avatar"
+  [nzSrc]="userInfo.avatar"></nz-avatar>
+
+<nz-dropdown-menu #theme="nzDropdownMenu">
+  <ul nz-menu nzSelectable>
+    <li nz-menu-item>{{ userInfo.name }}</li>
+    <button nz-menu-item (click)="logout()">退出登录</button>
+  </ul>
+</nz-dropdown-menu>

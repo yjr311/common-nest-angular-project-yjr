@@ -1,0 +1,41 @@
+.reader {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+
+  header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+
+    h1 {
+      font-family: Troubleside;
+      font-size: 2rem;
+      color: ~"oklch(from #ffd60a l c h)";
+      border-bottom: 3px solid ~"oklch(from #ffd60a l c h)";
+      display: inline-block;
+      padding-bottom: 0.25rem;
+    }
+  }
+
+  .pages {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    figure {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+
+      img {
+        max-width: 700px;
+        width: 100%;
+        height: auto;
+        border-radius: 1rem;
+        border: 4px solid ~"oklch(from #ffd60a l c h)";
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+        background: #fff;
+      }
+    }
+  }
+}

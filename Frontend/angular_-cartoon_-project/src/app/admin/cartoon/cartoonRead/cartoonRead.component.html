@@ -1,0 +1,11 @@
+<main class="reader">
+  <header>
+    <h1>Chapter {{ chapterId }}</h1>
+  </header>
+
+  <div class="pages">
+    <figure *ngFor="let page of pages; let i = index">
+      <img [src]="page" [alt]="'Page ' + (i + 1)" />
+    </figure>
+  </div>
+</main>

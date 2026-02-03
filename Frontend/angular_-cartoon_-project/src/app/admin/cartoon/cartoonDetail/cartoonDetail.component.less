@@ -1,0 +1,160 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    background: ~"oklch(from var(--avarage-color, #166496) 0.15 min(c,0.05) h)";
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 2rem;
+}
+
+@font-face {
+    font-family: Troubleside;
+    //   src: url("https://cdn.jsdelivr.net/gh/chytanka/chytanka.github.io/src/assets/fonts/Troubleside.ttf");
+    src: url('../../../../assets/fonts/Troubleside.ttf') format('truetype');
+    font-display: swap;
+}
+
+.detail-card {
+    max-width: 900px;
+    margin: 0 auto;
+    border: 0.25rem solid ~"oklch(from #ffd60a 0.48 0.0192 h)";
+    border-radius: 1rem;
+    background: var(--avarage-color, #444);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
+    padding: 2rem;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+h1 {
+    font-family: Troubleside;
+    color: ~"oklch(from #ffd60a l c h)";
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+figure {
+    flex: 1;
+    margin: 0;
+
+    img {
+        width: 100%;
+        max-width: 350px;
+        object-fit: cover;
+        border-radius: 0.5rem;
+        display: block;
+        // margin: 0 auto;
+    }
+}
+
+.info {
+    flex: 2;
+    font-size: 1rem;
+    line-height: 1.5;
+
+    .author {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+
+    .status {
+        margin-bottom: 1rem;
+        opacity: 0.9;
+    }
+
+    .desc {
+        text-align: justify;
+    }
+}
+
+.chapters {
+    margin-top: 2rem;
+
+    h2 {
+        font-family: Troubleside;
+        font-size: 1.5rem;
+        color: ~"oklch(from #ffd60a l c h)";
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 1rem;
+    }
+
+    li {
+        text-align: center;
+
+        button {
+            width: 100%;
+            background: ~"oklch(from #ffd60a 0.48 0.0192 h)";
+            border: none;
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
+
+            &:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
+            }
+
+            &:active {
+                transform: translateY(0);
+                box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
+            }
+        }
+    }
+}
+
+
+footer {
+    margin-top: 2rem;
+    text-align: center;
+
+    button {
+        background: ~"oklch(from #ffd60a 0.48 0.0192 h)";
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0.5rem 1.25rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(1rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

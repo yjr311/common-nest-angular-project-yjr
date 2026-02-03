@@ -1,0 +1,158 @@
+:host {
+  display: block;
+  background: #16649620;
+  background: ~"oklch(from #166496 0.12 min(c, 0.0512) h)";
+  color: white;
+  font-size: clamp(0.875rem, 0.8214285714rem + 0.2380952381vw, 1rem);
+  line-height: 1.3;
+  font-family: Arial, sans-serif;
+}
+
+@font-face {
+  font-family: Troubleside;
+  // src: url("https://cdn.jsdelivr.net/gh/chytanka/chytanka.github.io/src/assets/fonts/Troubleside.ttf");
+  src: url('../../../assets/fonts/Troubleside.ttf') format('truetype');
+
+  font-display: swap;
+}
+
+@ratio: 257 / 364;
+@t: 0.133333334s;
+@min-card-width: 192px;
+@max-card-width: 240px;
+@radius: 0.5rem;
+@border-size: 0.25rem;
+@accent: ~"oklch(from #ffd60a l c h)";
+
+h1 {
+  color: @accent;
+  font-family: Troubleside;
+  margin: 1rem 0 0;
+}
+
+main {
+  padding: 2rem;
+}
+
+section {
+  margin-bottom: 2rem;
+  position: relative;
+  perspective: 4000px;
+
+  display: grid;
+  gap: 1.5rem;
+
+  // 限制卡片宽度范围，保证不会无限拉大
+  grid-template-columns: repeat(auto-fill, minmax(@min-card-width, @max-card-width));
+  justify-content: center;
+
+  header {
+    grid-column: 1 / -1;
+  }
+}
+
+article {
+  --deg: 0.8deg;
+  --y: 0;
+  border: @border-size solid ~"oklch(from #ffd60a 0.48 0.0192 h)";
+  border-radius: @radius;
+  background-color: var(--avarage-color, ~"oklch(from #ffd60a 0.48 0.0192 h)");
+  background-image: radial-gradient(~"oklch(from var(--avarage-color, #ccc) 0.36 0.0192 h)" 1px,
+      transparent 0px);
+  background-repeat: repeat;
+  background-size: 7px 7px;
+  background-position: center;
+
+  box-shadow: 1px 1px ~"oklch(from #166496 0.12 min(c, 0.0512) h)",
+    @border-size @border-size ~"oklch(from #ffd60a 0.36 0.0192 h)";
+  opacity: 0.8;
+  transform: rotate(var(--deg)) translateY(var(--y)) scale(1) rotateX(0deg);
+  transition: all @t ease-in-out;
+  will-change: transform;
+  transform-style: preserve-3d;
+
+  max-width: @max-card-width; // ✅ 限制最大宽度
+  margin: 0 auto;
+
+  &:hover {
+    --deg: 0 !important;
+    --y: -1.25ch;
+    box-shadow: 1px 1px ~"oklch(from #166496 0.12 min(c, 0.0512) h)",
+      (@border-size * 2) (@border-size * 2) ~"oklch(from #ffd60a 0.36 0.0192 h)";
+    opacity: 1;
+  }
+}
+
+figure {
+  img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: @ratio;
+    object-fit: cover;
+    border-radius: calc(@radius - @border-size);
+    display: block;
+  }
+
+  figcaption {
+    font-family: Troubleside;
+    margin: 1ch;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    word-break: break-word;
+    line-height: 1;
+  }
+}
+
+article:nth-child(2n) {
+  --deg: -0.8deg;
+}
+
+article:nth-child(2n + 1) {
+  --deg: -0.6deg;
+}
+
+article:nth-child(3n) {
+  --deg: 0.6deg;
+}
+
+article:nth-child(4n + 2) {
+  --deg: -0.75deg;
+}
+
+article:nth-child(5n) {
+  --deg: 0.25deg;
+}
+
+article:nth-child(6n + 3) {
+  --deg: -0.3deg;
+}
+
+article:nth-child(7n) {
+  --deg: 0.9deg;
+}
+
+// ==================== 滚动动画（原生支持时生效） ====================
+@supports (animation-timeline: view()) {
+  article {
+    animation: shrink-top both ease-in-out,
+      shrink-bottom both ease-in-out reverse;
+    animation-timeline: view(block);
+    animation-range: entry, exit;
+  }
+}
+
+@keyframes shrink-top {
+  0% {
+    transform-origin: top;
+    transform: scale(0.5) rotateX(-60deg);
+  }
+}
+
+@keyframes shrink-bottom {
+  0% {
+    transform-origin: bottom;
+    transform: scale(0.5) rotateX(60deg);
+  }
+}

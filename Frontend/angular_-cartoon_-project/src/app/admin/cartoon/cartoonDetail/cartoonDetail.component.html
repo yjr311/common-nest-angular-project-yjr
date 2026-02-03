@@ -1,0 +1,42 @@
+<main *ngIf="book" [style.--avarage-color]="book.color">
+  <section class="detail-card">
+    <header>
+      <h1>{{ book.title }}</h1>
+    </header>
+
+    <!-- ✅ 两列布局：左边封面 + 右边信息 -->
+    <div class="content">
+      <!-- 左边封面 -->
+      <figure>
+        <img [src]="book.image" [alt]="book.title" />
+      </figure>
+
+      <!-- 右边信息 -->
+      <div class="info">
+        <p class="author"><strong>Author:</strong> {{ book.author || 'Unknown' }}</p>
+        <p class="status"><strong>Status:</strong> {{ book.status }}</p>
+        <p class="desc">
+          {{ book.description || 'No description available.' }}
+        </p>
+      </div>
+    </div>
+
+   <section class="chapters" *ngIf="book.chapters?.length">
+  <h2>Chapters</h2>
+  <ul>
+    <li *ngFor="let chapter of book.chapters">
+      <button (click)="readChapter(chapter.id)">
+        {{ chapter.title }}
+      </button>
+    </li>
+  </ul>
+</section>
+
+
+    
+
+    <footer>
+      <button (click)="goBack()">← Back</button>
+    </footer>
+  </section>
+</main>

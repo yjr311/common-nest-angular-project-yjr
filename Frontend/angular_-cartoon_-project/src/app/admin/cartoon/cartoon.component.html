@@ -1,0 +1,29 @@
+<section>
+  <header><h1>Reading</h1></header>
+  <article *ngFor="let book of readingBooks" [style.--avarage-color]="book.color">
+    <figure>
+      <img [src]="book.image" [alt]="book.title" (click)="ToCarttonDetail(book.id,book)"/>
+      <figcaption>{{ book.title }}</figcaption>
+    </figure>
+  </article>
+</section>
+
+<section>
+  <header><h1>Completed</h1></header>
+  <article *ngFor="let book of completedBooks" [style.--avarage-color]="book.color">
+    <figure>
+      <img [src]="book.image" [alt]="book.title" (click)="ToCarttonDetail(book.id,book)"/>
+      <figcaption>{{ book.title }}</figcaption>
+    </figure>
+  </article>
+</section>
+
+<section>
+  <header><h1>Planning</h1></header>
+  <article *ngFor="let book of planningBooks" [style.--avarage-color]="book.color">
+    <figure>
+      <img [src]="book.image" [alt]="book.title" (click)="ToCarttonDetail(book.id,book)" />
+      <figcaption>{{ book.title }}</figcaption>
+    </figure>
+  </article>
+</section>

@@ -1,0 +1,52 @@
+<div class="layout">
+  <nz-layout>
+    <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+      <div class="logo"></div>
+      <ul nz-menu nzTheme="dark" nzMode="inline">
+        <li nz-submenu nzTitle="User" nzIcon="user">
+          <ul>
+            <li nz-menu-item>Tom</li>
+            <li nz-menu-item>Bill</li>
+            <li nz-menu-item>Alex</li>
+          </ul>
+        </li>
+        <li nz-submenu nzTitle="PRO" nzIcon="team">
+          <ul>
+            <li nz-menu-item routerLink="/landing" (click)="setBreadcrumb(['PRO', 'landing'])">product</li>
+            <li nz-menu-item routerLink="/WebCategories" (click)="setBreadcrumb(['PRO', 'WebCategories'])">Categories
+            </li>
+            <li nz-menu-item routerLink="/ai-chat" (click)="setBreadcrumb(['PRO', 'ai-chat'])">ai-chat</li>
+
+          </ul>
+        </li>
+        <li nz-menu-item>
+          <span nz-icon nzType="file" nzTheme="outline" style="margin-right: 5px;"></span>
+          <span>File</span>
+        </li>
+      </ul>
+    </nz-sider>
+    <nz-layout>
+      <nz-header>
+        <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          (click)="isCollapsed = !isCollapsed" nzTheme="outline" style="margin-right: 5px;"></span>
+        <nz-avatar class="WebHeader-avatar" nz-dropdown [nzDropdownMenu]="theme" [nzSize]="45"
+          nzSrc="../../../assets/images/01.webp"></nz-avatar>
+        <nz-dropdown-menu #theme="nzDropdownMenu">
+          <ul nz-menu nzSelectable>
+            <li nz-menu-item>Game Master</li>
+            <button style="width: 100%" nz-menu-item (click)="ToLogin()">跳转登录</button>
+          </ul>
+        </nz-dropdown-menu>
+        <nz-breadcrumb>
+          <nz-breadcrumb-item *ngFor="let itm of breadcrumb">{{itm}}</nz-breadcrumb-item>
+        </nz-breadcrumb>
+      </nz-header>
+      <nz-content>
+        
+        <div class="inner-content"><router-outlet></router-outlet></div>
+      </nz-content>
+      <nz-footer><app-web-footer></app-web-footer></nz-footer>
+    </nz-layout>
+  </nz-layout>
+
+</div>

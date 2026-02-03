@@ -1,0 +1,36 @@
+<div class="main-login" *ngIf="!isLoading">
+  <div class="login-page">
+    <div class="form">
+      <!-- 注册表单 -->
+      <form class="register-form" *ngIf="isRegisterMode" [@formToggle]>
+        <!-- <input type="text" name="tel" [(ngModel)]="registerInfo.tel" placeholder="please input your phone" /> -->
+        <input type="text" name="username" [(ngModel)]="registerInfo.username" placeholder="please input your phone" />
+        <input type="text" name="password" [(ngModel)]="registerInfo.password" placeholder="please input your passWord" />
+        <!-- <input type="text" name="validCode" [(ngModel)]="registerInfo.validCode" placeholder="please input your validCode" /> -->
+        <!-- <button type="button" (click)="sendCode()" [disabled]="countdown > 0">
+          {{ countdown > 0 ? countdown + 's后重试' : '获取验证码' }}
+        </button> -->
+        <button type="button" (click)="register()">Create/Update PW</button>
+        <p class="message">
+          Already registered?
+          <a (click)="toggleMode()">Sign In</a>
+        </p>
+      </form>
+
+      <!-- 登录表单 -->
+      <form class="login-form" *ngIf="!isRegisterMode" [@formToggle]>
+        <input type="text" name="username" [(ngModel)]="loginInfo.username" placeholder="username" />
+        <input type="password" name="password" [(ngModel)]="loginInfo.password" placeholder="password" />
+        <button type="button" (click)="Tolgin()">Login</button>
+        <p class="message">
+          Not registered?
+          <a (click)="toggleMode()">Create/Update PW an account</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isLoading" class="loading">
+  <app-loading></app-loading>
+</div>

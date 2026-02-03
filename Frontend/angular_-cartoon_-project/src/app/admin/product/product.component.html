@@ -1,0 +1,107 @@
+<div nz-row style="padding: 10px;">
+  <div nz-col [nzSpan]="isShowProduct ? 15 : 24">
+    <nz-card style="width:auto;" nzTitle="Product List" [nzExtra]="new">
+      <div nz-row>
+        <div mz-col nzSpan="6" style="padding: 10px 10px 0 0;" *ngFor="let item of historyList" let index=index>
+          <nz-card nzHoverable style="width:240px" [nzCover]="coverTemplate"
+            [nzActions]="[actionSetting, actionEllipsis]">
+            <nz-card-meta [nzTitle]="item.name+' '+item.rank+' '+item.label"
+              [nzDescription]="item.intro"></nz-card-meta>
+          </nz-card>
+          <ng-template #coverTemplate>
+            <img alt="example" style="height: 160px;" [src]="item.avatar_url" />
+          </ng-template>
+          <ng-template #actionSetting>
+            <span nz-icon nzType="edit" nzTheme="outline" style="margin-right: 5px;"></span>
+            <span (click)="EditProduct(item)">Edit</span>
+          </ng-template>
+
+          <ng-template #actionEllipsis>
+            <span nz-icon nzType="delete" nzTheme="outline" style="margin-right: 5px;"></span>
+            <span (click)="Delete(item.id)">Delete</span>
+          </ng-template>
+        </div>
+      </div>
+    </nz-card>
+    <ng-template #new>
+      <a (click)="newProduct()">New</a>
+    </ng-template>
+  </div>
+  <div nz-col nzSpan="9">
+    <nz-card *ngIf="isShowProduct" style="width:auto;" nzTitle="New Product" [nzExtra]="close">
+      <form nz-form [nzLayout]=" 'vertical' " class="flex-form" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+
+
+        <nz-form-item>
+          <nz-form-label nzSpan="null">医院名字</nz-form-label>
+          <nz-form-control nzSpan="null">
+            <input nz-input formControlName="name" placeholder="请输入医院名字" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <!-- <nz-form-item>
+          <nz-form-label nzSpan="null">医院级别</nz-form-label>
+          <nz-form-control nzSpan="null" nzErrorTip="Please input your Password!">
+            <input nz-input formControlName="rank" placeholder="input placeholder" />
+          </nz-form-control>
+        </nz-form-item> -->
+
+        <nz-form-item style="width: 239px;height: 62px;">
+          <nz-form-label nzSpan="null">医院级别</nz-form-label>
+          <nz-form-control nzSpan="null" nzErrorTip="请选择医院级别">
+            <nz-select formControlName="rank" nzPlaceHolder="请选择医院级别">
+              <nz-option nzValue="一甲" nzLabel="一甲"></nz-option>
+              <nz-option nzValue="二甲" nzLabel="二甲"></nz-option>
+              <nz-option nzValue="三甲" nzLabel="三甲"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+
+
+        <nz-form-item>
+          <nz-form-label nzSpan="null">医院类型</nz-form-label>
+          <nz-form-control nzSpan="null" nzErrorTip="Please input your username!">
+            <input nz-input formControlName="label" placeholder="请输入医院类型" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label nzSpan="null">图片地址</nz-form-label>
+          <nz-form-control nzSpan="null" nzErrorTip="Please input your Password!">
+            <input nz-input formControlName="avatar_url" placeholder="请输入图片地址" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item class="flex-item">
+          <nz-form-label>医院介绍</nz-form-label>
+          <nz-form-control [nzSpan]="24" nzHasFeedback nzErrorTip="Please write something here!">
+            <nz-textarea-count [nzMaxCharacterCount]="2000">
+              <textarea formControlName="intro" nz-input rows="3" placeholder="write any thing"></textarea>
+            </nz-textarea-count>
+          </nz-form-control>
+        </nz-form-item>
+
+        <!-- <nz-form-item>
+          <nz-form-control></nz-form-control>
+        </nz-form-item> -->
+
+        <nz-form-item style="margin: 0 auto;">
+          <nz-form-control nzSpan="null" nzOffset="null">
+
+            <button nz-button style="background: red;margin-right: 10px;" nzType="dashed"
+              (click)="ResetProduct()">Reset</button>
+            <button nz-button nzType="primary" *ngIf="validateForm.get('id')?.value == 0">Submit</button>
+
+            <!-- -->
+            <button nz-button nzType="primary" *ngIf="validateForm.get('id')?.value !== 0">Update Product</button>
+
+
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </nz-card>
+    <ng-template #close>
+      <a (click)="closeProduct()">close</a>
+    </ng-template>
+  </div>
+</div>
