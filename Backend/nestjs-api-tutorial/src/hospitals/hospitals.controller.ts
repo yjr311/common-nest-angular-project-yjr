@@ -14,19 +14,19 @@ export class HospitalsController {
   @UseGuards(AuthGuard('jwt'))
   @Post('/hos/save')
   create(@Body() createHospitalDto: CreateHospitalDto, @CurrentUser('userId') userId: number) {
-    return this.hospitalsService.create(createHospitalDto, userId);
+    return this.hospitalsService.create(createHospitalDto);
   }
 
   @UseGuards(AuthGuard('jwt'))
   @Get()
   findAll(@Req() req: any) {
-    return this.hospitalsService.findAll(req.user.userId);
+    return this.hospitalsService.findAll();
   }
 
   @UseGuards(AuthGuard('jwt'))
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number, @CurrentUser('userId') userId: number) {
-    return this.hospitalsService.findOne(id, userId);
+    return this.hospitalsService.findOne(id);
   }
 
   @UseGuards(AuthGuard('jwt'))
@@ -35,7 +35,7 @@ export class HospitalsController {
   @Body() updateHospitalDto: UpdateHospitalDto,
   @CurrentUser('userId') userId: number
 ) {
-    return this.hospitalsService.update(id, updateHospitalDto, userId);
+    return this.hospitalsService.update(id, updateHospitalDto);
   }
 
   /**
@@ -49,6 +49,6 @@ export class HospitalsController {
   @Roles('admin') // 装饰器不是“按写的顺序执行”的 在应用启动时就已经把 metadata 贴好了
   @Delete('/delete/:id')
   remove(@Param('id', ParseIntPipe) id: number, @CurrentUser('userId') userId: number) {
-    return this.hospitalsService.remove(id, userId);
+    return this.hospitalsService.remove(id);// userId
   }
 }
