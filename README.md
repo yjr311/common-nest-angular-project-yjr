@@ -1,1 +1,1 @@
-后续我会添加中间件redis,es,mq尽量让大家能够看懂吧,我也是nest+angular项目的初学者大家一起进步;
+后续我会添加中间件redis,es,mq,我也是nest+angular项目的初学者大家一起进步;
